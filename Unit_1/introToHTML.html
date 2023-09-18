@@ -1,0 +1,154 @@
+<!-- 
+    Comment example CTRL /    '!' or "Bang" is a way for us to quickly create a boilerplate for our HTML
+-->
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    -DOCTYPE: declares exactly what it is, an HTML document.
+    -lang: notes what the language of the document. Helps assist search engines and browsers.
+    - The head tag holds all of our meta data for the document.
+    - This holds various information such as the title of the document, viewport settings, and links to other files, such as CSS.
+    -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro to HTML</title>
+    <!-- 
+        - charset: defines which characters are available, such as 0-9, A-Z, and symbols.
+        - UTF-8 covers almost all of the characters
+        - http-equiv: allows us to render older browser versions if necessary. In this case, we are targeting Edge; however this isn't as necessary.
+        - name & content: Details on the users viewport or screen, and auto scales as necessary.
+        - title: details the title of our document. This is displayed in the tab of the browser page.
+    -->
+</head>
+<!-- The body tag:
+    - What the client will display when rendering.
+    - What you see on the page in the browser.
+-->
+
+<body>
+    <h1>Examples of Structural Elements</h1>
+    <div>
+        <div>
+            - h1 : heading. These range from h1 - h6, getting smaller as the number
+            increases. - div : a division - p : paragraph element - img : provides
+            us an element to present an image. - span : We can write a block of text
+            without line breaks.
+        </div>
+        <h2>Sample H2</h2>
+        <h3>Sample H3</h3>
+        <h4>Sample H4</h4>
+        <h5>Sample H5</h5>
+        <h6>Sample H6</h6>
+        <p>This is a paragraph element!</p>
+
+        <!-- Emmet shortcuts: CTRL ENTER creates new line from anywhere in old line. -->
+        <!-- Emmet shortcuts: h1/ other standard element tag tab will auto do the text blocking. -->
+        <!-- Through emmet, we can add blocks of text via "lorem". This is a great way to create filler content for mock ups. -->
+
+        <span>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae
+            quos hic beatae magni possimus ad unde, vel praesentium laborum
+            repellendus tenetur similique quasi commodi dolores blanditiis nulla
+            corporis quo tempore. Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Molestias aut maxime sint nam, eum non, explicabo eos illo ipsum
+            quaerat aliquid enim error. Nobis ipsum minus repellendus architecto
+            perspiciatis aspernatur! Rerum, facere, ea deserunt id consequatur
+            numquam dolor consequuntur quibusdam tempora perspiciatis possimus,
+            reiciendis suscipit officiis dolores explicabo eligendi a iure pariatur.
+            Ut, natus est adipisci iusto aut quos sit.
+        </span>
+        <img src="https://assets.website-files.com/5f4577933a0688792f77983b/5ffcaf5bf69d7dbee581b8e3_01_11-21_UPRIGHT_LOGO_800.png"
+            alt="Upright Logo" />
+        <!-- 
+            img tag has two default attributes
+                - src
+                    - required
+                    - source of the image. This could be in an assets folder or another location on the web.
+                - alt
+                    - optional ~ but highly recommended
+                    - text that is used in case image doesn't load.
+                    - text that is read by screen readers for the visually impaired.
+                    - can be a source for SEO (Search Engine Optimization)  
+                - title
+                    - can help with tool-tips.
+        -->
+    </div>
+    <!-- ^All the above tags are structural elements -->
+    <!-- 
+            emmet example: div>ul>li*6
+
+            ul: unordered List, bullet points
+            ol: Ordered List, numbered list
+            li: List Item
+        -->
+    <div>
+        <ul>
+            <li>
+                <strong>Makes text BOLD</strong> but so does <b>the b element</b>
+            </li>
+            <li><em>Provides emphasis</em> or <i>italics</i></li>
+            <li>
+                <br />Will do a line break for us. <i>Notice the no closing tags?</i>
+            </li>
+            <li>
+                <hr />
+                Gives us a horizontal rule or <b>dividing line</b>
+            </li>
+            <li>
+                <blockquote>"quote"</blockquote>
+            </li>
+            <li>
+                <pre>A way to showcase code</pre>
+            </li>
+        </ul>
+    </div>
+    <!-- More Self-Closing Tags: -->
+    <div>
+        <!-- 
+            input: typically used in forms but not limited.
+                - Many different types such as numbers, radial, email, password, etc.
+            link: won't show up in the browser, but is a way for us to connect files such as CSS.
+        -->
+        <input type="text" />
+        <input type="password" />
+        <link rel="stylesheet" href="" />
+    </div>
+    <!-- Semantic Elements: element names that clearly describe what they are to the developer and browser -->
+    <img src="https://i.pinimg.com/originals/46/e2/1c/46e21c46e7001fca6554cd45562268fa.jpg" alt="Semantic tag layout" />
+    <hr />
+    <section>
+        <header>
+            <h1>Header</h1>
+        </header>
+        <nav>
+            <ul>
+                <li>Link1</li>
+                <li>Link2</li>
+            </ul>
+        </nav>
+        <aside>
+            <ul>
+                <li>sidebar1</li>
+                <li>sidebar2</li>
+            </ul>
+        </aside>
+        <section>
+            <article>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae enim
+                culpa hic, saepe, fuga ducimus quidem sunt est quaerat eveniet
+                distinctio minus amet velit? Illo eligendi delectus esse expedita
+                saepe? Optio consequatur cupiditate harum minima molestias possimus
+                doloremque, molestiae ipsa, maiores excepturi blanditiis quod ut
+                quibusdam. Assumenda maxime molestias, magni cumque, eius fuga
+                incidunt, enim nam perferendis iste eligendi quia?
+            </article>
+        </section>
+        <footer>
+            <p>bottom links</p>
+        </footer>
+    </section>
+</body>
+
+</html>

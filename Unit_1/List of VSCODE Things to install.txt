@@ -1,0 +1,3 @@
+
+
+Test that openwith liveServer extension works, right click blank space of html page, click open with live Server

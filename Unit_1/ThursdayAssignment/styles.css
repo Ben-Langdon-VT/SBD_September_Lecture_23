@@ -1,0 +1,42 @@
+
+/* 
+Alt + Shift + A -> other comment
+ctrl / also works
+    * Building Blocks
+
+    selector {
+        property: value;
+    } <- declaration block
+*/
+
+nav {
+    background-color: #d2d2d2;
+    /*
+        -preset colors: red, blue, yellow, etc.
+        - rgb & rgba (red, green, blue, alpha of colors)
+            -alpha determines transparency
+            ex: rgba (200, 15, 100, .5)
+            alpha goes form 0 to 1
+        -Hexidecimal
+            - 16 digits: 0-9 A-F
+            ex #d2d2d2
+    */
+    overflow: hidden;
+}
+
+.btn
+{
+    float: right;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+#home
+{
+    float: left;
+}
+
