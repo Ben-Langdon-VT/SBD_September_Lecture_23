@@ -1,0 +1,90 @@
+/* This is a comment within CSS */
+/* 'ctrl + /' will also make a comment */
+/* on mac, this is 'cmd + /' */
+
+/* 
+These Comments
+Can Span
+Multiple Lines
+*/
+
+/* 
+List of CSS Selectors:
+    -Element Selector is going to select all instances of a given tag from our HTML page
+        ex: body, article, div, etc 
+        - just use full name, no symbols or spaces
+        p{
+            ...
+        }
+    
+        -Class Selector is going to select all instances that have a matching class attribute.
+        ex:
+            <h1 class="header">... in html file
+
+        in css file
+        .header {
+            ... 
+        }
+        will update all elements with the class="header" attribute
+    
+
+*/
+
+
+/* I want to change the color of my p tags */
+/* I have to start by telling my CSS file what I want to change */
+
+/* crtl enter, jump to and create new line below */
+/* ctrl shift enter, jump to and create a new line above */
+
+/* select all <p> Tags */
+p, h1 { 
+    color: orangered;
+    /* change the text color to "orangered" */
+    background-color: yellowgreen;
+    /* change the background color of this element, not the whole page, to yellowgreen */
+}
+
+/* body selector- what we write before the {} is going to be our "selector".
+A "selector" is a term for the element or elements on my html page which are being edited by this style rule */
+body {
+    background-color: lightgray;
+    /* 
+        In CSS we have 3 major ways to refer to a color:display:
+            -color keywords:
+                - green, lightgray, orangered, etc...
+            -RGB value:
+                -rgb(0-255, 0-255, 0-255)
+                - Each of these numbers represents how strong either the Red, Green, or Blue is in our color
+            - Hex Color:
+                - ex: #002255
+                -each pair of values represents one of our "rgb" values, so a hex color is made of 3 pairs of characters.
+                These characters count from 0-9, then A-F
+                    -0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f
+    */
+}
+
+/* Class selector, must be preceded by a period */
+.header {
+    text-align: center;
+}
+
+/* ID selector, must be preceded by a # */
+#unique {
+    text-decoration: underline overline;
+    background-color: pink;
+    color: olivedrab;
+}
+/* We are only ever going to get back ONE item with a given ID,
+    unlike a tag name or class we cannot use the same ID for multiple elements
+    Our browser and Javascript will only apply stuff to the first element with a given ID, not any afterwards */
+
+/* Compound Sector: it is more than a single selector in one rule */
+/* grab multiple element groups at the same time with commas */
+/* separated spaces to get more stuff */
+
+h1, h2, h3, h4, h5, h6 {
+    /* this will now change all of my h tags at the same time
+    */
+    text-decoration: underline;
+}
