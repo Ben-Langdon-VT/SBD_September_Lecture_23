@@ -88,3 +88,48 @@ h1, h2, h3, h4, h5, h6 {
     */
     text-decoration: underline;
 }
+
+/* change all sub elements of nav that have button class */
+
+nav .btn {
+    text-shadow: 2px 2px 2px black;
+}
+
+/* only change direct children of nav element, not their children or their children's children etc */
+/* nav> .btn {
+    color: yellow;
+} */
+
+/* a {
+    /* important will override things, increase priority to a new tier in the logic deciding how to draw each element */
+    /* color: darkviolet !important;
+} */ 
+
+/* 
+    !CSS hierarch:
+    element < class < ID
+    other factors such as order in CSS and various function things rank the priority of which is applied to which element last.
+    external stylesheet element < external stylesheet class < external stylesheet ID < external stylesheet !Important
+    external stylesheet is a folder imported as a link, as opposed to css listed directly in the html file.
+
+
+*/
+
+
+/* styling an unvisited link */
+a:link {
+    color: red;
+}
+
+a:visited {
+    color: blue;
+}
+
+a:hover {
+    color: pink;
+}
+
+a:active {
+    color: greenyellow;
+}
+/* styling a link my mouse is hovering over */
