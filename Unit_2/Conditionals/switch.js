@@ -61,7 +61,12 @@ switch (true) {
         console.log('I scream for ice cream!');
         break;
     default:
-        console.log("not on the menu.");
+        console.log("Not on the menu.");
 }
 
 //Rework as ternary
+
+(dessert == "pie") ? console.log("Pie, pie, me oh my!") 
+    : (dessert == "cake") ? console.log("Cake is great!") 
+    : (dessert == "ice cream") ? console.log("I scream for ice cream!") 
+    : console.log("Not on the menu.")
