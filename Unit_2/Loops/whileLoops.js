@@ -28,8 +28,8 @@ while(z < 5){
     cartMsg = `You have ${z} items in your cart!`;
     console.log(cartMsg);
 }
-console.log(`You have ${z} items in your cart, want to checkout now?`);
 
+console.log(`You have ${z} items in your cart, want to checkout now?`);
 //Something you would actually use a while loop for
 
 n1 = 1;
@@ -39,7 +39,6 @@ while (n2 < 1000){
     temp = n1;
     n1 = n2;
     n2 = n2 + temp;
-
 }
 
 console.log(`${n1}, ${n2}`);
