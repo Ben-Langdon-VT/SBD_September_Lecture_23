@@ -54,15 +54,18 @@ const presidents = [
     - We only want the dead presidents to be displayed.
 */
 
-let presidentCount = presidents.length;
-let livingPresidents = presidents.filter(president => president.passed === undefined).length;
-let deadPresidents = presidentCount - livingPresidents;
+function presidentFormat(name, last, age){
+    return "Name: " + name + " " + last + " " + " ".repeat(20 - name.length - last.length) + "Age: " + `${age}`;
+}
 
-console.log("Total Presidents: ",presidentCount);
-console.log("Living Presidents: ", livingPresidents);
-console.log("Dead Presidents: ", deadPresidents, "\nDeadPresidents:");
+let livingPresidents = presidents.filter(president => president.passed === undefined);
+
+console.log("Total Presidents: ", presidents.length);
+console.log("Living Presidents: ", livingPresidents.length);
+livingPresidents.forEach(president => console.log("\t", presidentFormat(president.first, president.last, 2023 - president.year)));
+console.log("\nDead Presidents: ", presidents.length- livingPresidents.length);
 presidents.forEach(president => {
     if(president.passed != undefined){
-        console.log("\tName: ",president.first, president.last, "\tAge: ", (president.passed - president.year))
+        console.log("\t", presidentFormat(president.first, president.last, president.passed - president.year));
     } 
 });
