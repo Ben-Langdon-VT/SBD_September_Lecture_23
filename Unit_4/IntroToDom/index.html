@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Inline Scripting -->
+    <!-- <script>
+        console.log("Within the HTML Doc")
+        console.log(window);
+    </script> -->
+
+    <!-- 
+        External file scripting
+            -helps with maintainablility
+            - request triggered to obtain script
+    -->
+    <script src = "./index.js"></script>
+    <div id="list">
+        <div id="listTitle">To Do List</div>
+        <div id="toDoList">
+            <ul id="ulToDo">
+                <li class="listItem">Clean bathroom</li>
+                <li class="listItem">Pack Clothes</li>
+                <li class="listItem">Pack Bathroom stuff</li>
+                <li class="listItem">Check if doors and windows closed</li>
+                <li class="listItem">Clean Kitchen</li>
+            </ul>
+        </div>
+        <!-- Event Listeners -->
+        <div id="inputField" style="text-align: center">
+            <input type="text" id="listInput" placeholder="ToDo Item" >
+            <button id="submit">Add Item</button>
+        </div>
+    </div>
+</body>
+</html>
