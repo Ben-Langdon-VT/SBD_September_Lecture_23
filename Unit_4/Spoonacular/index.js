@@ -27,7 +27,7 @@ const genCard = (recipe, random) => {
     img.src = recipe.img;
     img.className = 'card-img-top';
     img.alt = recipe.title;
-    body.className4 = 'card-body';
+    body.className = 'card-body';
     title.className = 'card-title';
     title.textContent = recipe.title;
     btn.className = "btn btn-primary";
