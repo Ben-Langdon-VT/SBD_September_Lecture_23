@@ -3,32 +3,29 @@ const db = require('../db.json');
 
 
 /* 
-    Quick Challenge:
-        - Frame a GET route
-            - No endpoint is required to access. It will "Get All" based off /routes
-                - note: where is "/routes" coming from?
-        
-        No need to work through the logic within the code block
+Quick Challenge:
+    - Frame a GET route
+        - No endpoint is required to access. It will "Get All" based off /routes
+            - note: Where is "/routes" coming from?
+    
+    No need to work through the logic within the code block.
 */
-//TODO GET ALL
-router.get('', (req,res) => {
-    try{
+router.get('/', (req, res) => {
+    try {
+
         res.status(200).json({
             results: db
         })
-    }
-    catch (err){
+
+    } catch (err) {
         res.status(500).json({
             error: err.message
-        });
+        })
     }
-});
-
-
-//TODO Get One
+})
 
 /* 
-    Syntax:
+    Syntax: 
         URL - /:id
             - denote a parameter value. Endpoint is expecting a reference value.
 
@@ -36,44 +33,80 @@ router.get('', (req,res) => {
             http://localhost:4000/routes/1
 
         - "1" would reference a parameter or flexible string.
-            - This could be as name of something or anything that we want.
+            - This could be a name of something or anything that we want.
 */
-router.get('/:id', (req,res) => {
+router.get('/id/:id', (req, res) => {
     console.log(req.params);
 
     /* 
         - used to help us locate one item in our database
-        - ID typically has a unique value to 
+        - ID typically has a unique value to help us find that ONE item.
         - Can help us search several times.
     */
 
-        try {
-            let { id } = req.params;
-            let results = db.filter(i => i.id == id);
+    try {
 
-            console.log(results);
+        let { id } = req.params;
+        let results = db.filter(i => i.id == id);
 
-            res.status(200).json({
-                results: results[0]
-            })
-        }
-        catch(err) {
-            res.status(500).json({
-                error: err.message
-            });
-        } 
-});
+        console.log(results);
 
-router.get("*", (req,res) => {
-    try{
-        res.status(500).json({
-            results: "wild card"
+        res.status(200).json({
+            results: results[0]
         })
-    }
-    catch(err){
+
+    } catch (err) {
         res.status(500).json({
             error: err.message
         })
     }
 })
+
+//* Query
+
+router.get('/query/', (req, res) => {
+    /* 
+    - Anything after the endpoint can be extracted.
+    ex:
+        localhost:4000/routes/query/?firstName="John"
+*/
+    try {
+        // console.log(req.firstName);
+
+        const { firstName, lastName } = req.query;
+        if (firstName && lastName) {
+            res.status(200).json({
+                results: {
+                    first: firstName,
+                    last: lastName,
+                    full: firstName + " " + lastName
+                }
+            })
+        }
+        else {
+            throw new Error("Need firstName and lastName");
+        }
+
+    }
+    catch (err) {
+        res.status(500).json({
+            error: err.message
+        })
+    }
+})
+
+//Default all strings that have not been matched
+
+router.get('*', (req, res) => {
+    try {
+        res.status(200).json({
+            results: "wild card"
+        })
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        })
+    }
+})
+
 module.exports = router;
