@@ -26,11 +26,11 @@ router.get('/', (req, res) => {
 router.get('/id/:id', (req, res) => {
     try {
         const { id } = req.params;
-        let results = data.filter(i => i.id === id);
+        let result = data.find(i => i.id == id);
 
-        if (results[0]) {
+        if (result) {
             res.status(200).json({
-                results: results[0],
+                results: result,
                 timestamp: req.timestamp
             });
         }
@@ -47,23 +47,23 @@ router.get('/id/:id', (req, res) => {
 router.get('/query/', (req, res) => {
     try {
         const { title, author } = req.query;
-        let books = [];
+        let book = [];
         if (title && author) {
-            books = data.filter(book => (book.title === title && book.author === author));
+            book = data.find(book => (book.title == title && book.author == author));
         }
         else if (title){
-            books = data.filter(book => book.title === title);
+            book = data.find(book => book.title == title);
         }
         else if (author){
-            books = data.filter(book => book.author === author);
+            book = data.find(book => book.author == author);
         }
         else{
             throw new Error("/query/ needs params 'title' and/or 'author'");
         }
 
-        if (books[0]) {
+        if (book) {
             res.status(200).json({
-                results: books[0],
+                results: book,
                 timestamp: req.timestamp
             });
         }
