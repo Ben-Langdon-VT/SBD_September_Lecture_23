@@ -44,10 +44,10 @@ router.get('/id/:id', (req, res) => {
 });
 
 //Search By Title Name
-router.get('/query/', (req, res) => {
+router.get('/query', (req, res) => {
     try {
         const { title, author } = req.query;
-        let book = [];
+        let book = undefined;
         if (title && author) {
             book = data.find(book => (book.title == title && book.author == author));
         }
