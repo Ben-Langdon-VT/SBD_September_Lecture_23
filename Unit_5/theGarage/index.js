@@ -2,10 +2,14 @@
 require('dotenv').config(); // dependency to allow environmental variables.
 const express = require('express');
 const app = express();
-const PORT = "port number here"; // need to connect to established port. 
+const PORT = process.env.PORT; // need to connect to established port. 
 
 //! Imports
 // Will need connections to controllers
+const taskController = require("./controllers/task.controller");
+const vehicleController = require("./controllers/vehicle.controller");
+const { db } = require("./db");
+
 
 //! Middleware
 app.use(express.static(`${__dirname}/public`)); // links to public/index.html file.
@@ -14,6 +18,9 @@ app.use(express.urlencoded({extended: true})); // allows us to send data back to
 
 //! Routes
 // Will establish routes once controllers have been imported
+app.use("task", taskController);
+app.use("vehicle", vehicleController);
 
 //! Connection
+db();
 app.listen(PORT, () => console.log(`Server Running: ${PORT}`));
