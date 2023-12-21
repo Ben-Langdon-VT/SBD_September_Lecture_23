@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String, //what datatype this is expecting
         required: true, //default to false
-    },
+    }
 });
 
 module.exports = mongoose.model('User', UserSchema);

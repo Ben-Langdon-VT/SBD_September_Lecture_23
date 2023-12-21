@@ -16,6 +16,7 @@ const db = mongoose.connection;
 //* Routers
 const userController = require('./controllers/user.controller');
 const movieController = require('./controllers/movie.controller');
+// const validateSession = require('./middleware/validate-session')
 
 
 //* Middleware
@@ -26,6 +27,7 @@ db.once("open", () => console.log(`Connection: ${MONGO}/movies`));
 
 //* Controller
 app.use('/user', userController);
+// app.use(validateSession);// all routes below require validation when used this way
 app.use('/movies', movieController);
 
 

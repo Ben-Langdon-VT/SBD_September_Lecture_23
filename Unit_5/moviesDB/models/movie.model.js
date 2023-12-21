@@ -33,6 +33,9 @@ const MovieSchema = new mongoose.Schema({
     },
     releaseYear : {
         type: Number
+    },
+    owner_id: {
+        type: String,
     }
 });
 

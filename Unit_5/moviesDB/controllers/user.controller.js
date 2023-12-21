@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const SECRET = process.env.JWT;
 
 /* ! Challenge
@@ -39,7 +40,7 @@ router.post('/signup', async(req,res) => {
         const newUser = await user.save();
 
 
-        const token = jwt.sign({message: 'hello'}, 'secret message', {expiresIn: "1 day"});
+        const token = jwt.sign({message: 'hello'}, SECRET, {expiresIn: 60*60*24});
         // console.log("test2");
         res.send({
             user: newUser,
@@ -67,6 +68,8 @@ router.post( '/login', async(req,res) => {
         if(!user) throw new Error("Email or Password does not match");
 
         const passwordMatch = await bcrypt.compare(password, user.password);
+
+        console.log(passwordMatch);
 
         if(!passwordMatch) throw new Error("Email or Password does not match");
 

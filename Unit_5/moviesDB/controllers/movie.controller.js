@@ -2,10 +2,11 @@ const router = require('express').Router();
 const Movie = require('../models/movie.model');
 const ObjectId = require('mongoose').Types.ObjectId;
 const { errorResponse } = require('../utils');
+const validateSession = require("../middleware/validate-session");
 
 //TODO POST
 
-router.post('/', async (req, res) => {
+router.post('/', validateSession, async (req, res) => {
     try {
         //1. pull data from client(body)
         // console.log(req);
@@ -23,7 +24,8 @@ router.post('/', async (req, res) => {
             genre,
             rating,
             length,
-            releaseYear
+            releaseYear,
+            owner_id: req.user._id
         })
 
         //3. save the object to the DB
@@ -44,7 +46,7 @@ router.post('/', async (req, res) => {
 });
 
 //TODO GET All
-router.get('/', async (req, res) => {
+router.get('/', validateSession, async (req, res) => {
     try {
         /* 
         !   Challenge
@@ -58,8 +60,8 @@ router.get('/', async (req, res) => {
         
         Hint: parameters within method are optional
         */
-
-        const all = await Movie.find();
+        user_id = req.user._id;
+        const all = await Movie.find({owner_id: user_id});
         // console.log(all);
         if (all.length > 0) {
             res.status(200).json({
@@ -77,7 +79,7 @@ router.get('/', async (req, res) => {
 });
 
 //TODO GET One
-router.get('/id/:id', async (req, res) => {
+router.get('/id/:id', validateSession, async (req, res) => {
     try {
         /* 
         !   Challenge
@@ -91,7 +93,8 @@ router.get('/id/:id', async (req, res) => {
         Docs: https://www.mongodb.com/docs/manual/reference/method/db.collection.findOne/
         */
         const { id } = req.params;
-        const movie = await Movie.findOne({ _id: new ObjectId(id) });
+        const user_id = req.user._id;
+        const movie = await Movie.findOne({ _id: id, owner_id: user_id });
         if (movie) {
             res.status(200).json({
                 result: movie
@@ -108,7 +111,7 @@ router.get('/id/:id', async (req, res) => {
 });
 
 //TODO Get All by Genre
-router.get('/genre/:genre', async (req, res) => {
+router.get('/genre/:genre', validateSession, async (req, res) => {
     try {
         /* 
         !   Challenge
@@ -121,6 +124,7 @@ router.get('/genre/:genre', async (req, res) => {
                 - Test the route within Postman
         */
         const { genre } = req.params;
+        const user_id = req.user._id;
         let buildWord = "";
         if (genre) {
             for (let i = 0; i < genre.length; i++) {
@@ -135,7 +139,7 @@ router.get('/genre/:genre', async (req, res) => {
         if (genre === "Cmdy") {
             buildWord = "Comedy";
         }
-        const movies = await Movie.find({ genre: buildWord });
+        const movies = await Movie.find({ genre: buildWord, owner_id: user_id });
         // console.log(movies);
         if (movies.length > 0) {
             res.status(200).json({
@@ -152,16 +156,17 @@ router.get('/genre/:genre', async (req, res) => {
 
 //TODO PATCH/PUT One
 
-router.patch('/add', async (req, res) => {
+router.patch('/add', validateSession,async (req, res) => {
     try {
         //pull value from parameter
-        const { id } = req.param;
+        const { id } = req.params;
+        const user_id = req.user._id;
         //pull data from the body
         const info = req.body; 
         // use method to locate a document based off the ID and pass in new information.
         //* .findOneAndUpdate(query,document, options)
         const returnOptions = {new: true};
-        const updated = await Movie.findOneAndUpdate({_id: new ObjectId(id)}, info, returnOptions);
+        const updated = await Movie.findOneAndUpdate({_id: new ObjectId(id), owner_id: user_id}, info, returnOptions);
 
         //respond to client
         res.status(200).json({
@@ -175,11 +180,12 @@ router.patch('/add', async (req, res) => {
 
 //TODO DELETE One
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', validateSession, async (req, res) => {
     try {
-        const {id} = body.params;
+        const {id} = req.params;
+        const user_id = req.user._id;
 
-        const deleteMovie = await Movie.deleteOne({_id: new ObjectId(id)});
+        const deleteMovie = await Movie.deleteOne({_id: new ObjectId(id), owner_id: user_id});
         console.log("Deleted movie: ", deleteMovie);
 
         if(deleteMovie.deletedCount){
