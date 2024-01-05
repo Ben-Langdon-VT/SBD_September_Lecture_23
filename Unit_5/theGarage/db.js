@@ -14,7 +14,11 @@ const mongoose = require("mongoose");
 
 const db = async () => {
     try {
-        await mongoose.connect(`${connection}/${collection}`);
+        await mongoose.connect(`${connection}/${collection}`, {
+            // mongoose dependencies warnings to remove
+            // useNewUrlParser: false,
+            // useUnifiedTopology: true
+        });
 
         console.log(`DB Connected to: ${connection}/${collection}`);
 

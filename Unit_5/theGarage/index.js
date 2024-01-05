@@ -18,9 +18,13 @@ app.use(express.urlencoded({extended: true})); // allows us to send data back to
 
 //! Routes
 // Will establish routes once controllers have been imported
-app.use("task", taskController);
-app.use("vehicle", vehicleController);
+app.use("/task", taskController);
+app.use("/vehicle", vehicleController);
 
 //! Connection
-db();
-app.listen(PORT, () => console.log(`Server Running: ${PORT}`));
+const server = async () => {
+    db();
+    app.listen(PORT, () => console.log(`Server Running: ${PORT}`));
+}
+
+server();
