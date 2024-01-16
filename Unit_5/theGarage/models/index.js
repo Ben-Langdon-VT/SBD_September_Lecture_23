@@ -6,5 +6,5 @@ module.exports = {
 }
 
 /* 
-     notation that makes it easier to reference our models with destructuring
+    notation that makes it easier to reference our models with destructuring
 */
