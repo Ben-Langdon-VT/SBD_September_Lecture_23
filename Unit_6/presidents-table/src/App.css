@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.table-container {
+  width: 100%; /* Spans the full width of the page */
+  text-align: center; /* Center aligns the content */
+  display: flex;
+  justify-content: space-around; /* Center the table horizontally */
+}
