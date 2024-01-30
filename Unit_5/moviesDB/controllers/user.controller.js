@@ -44,7 +44,7 @@ router.post('/signup', async(req,res) => {
         // console.log("test2");
         res.send({
             user: newUser,
-            message: "Connected",
+            message: "success",
             token
         });
     }
@@ -80,7 +80,7 @@ router.post( '/login', async(req,res) => {
         //respond
         res.send({
             user,
-            message: "Connected",
+            message: "success",
             token
         });
     }

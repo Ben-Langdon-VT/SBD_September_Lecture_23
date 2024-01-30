@@ -17,11 +17,13 @@ const db = mongoose.connection;
 const userController = require('./controllers/user.controller');
 const movieController = require('./controllers/movie.controller');
 // const validateSession = require('./middleware/validate-session')
+const cors = require('cors');
 
 
 //* Middleware
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(cors());
 db.once("open", () => console.log(`Connection: ${MONGO}/movies`));
 
 
