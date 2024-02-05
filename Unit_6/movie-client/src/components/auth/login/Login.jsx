@@ -60,7 +60,7 @@ import {useRef} from 'react'
 
         // console.log(bodyObj);
 
-        const url = `${baseURL}/user/signup`;
+        const url = `${baseURL}/user/login`;
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
         //* Setting our headers to accept the Json object within the browser

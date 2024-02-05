@@ -3,7 +3,7 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import FullButton from '../buttons/FullButton';
 import { baseURL } from '../../environments';
 
-function MovieCreate({token}) {
+function MovieCreate({token, fetchMovies}) {
 
     const titleRef = useRef();
     const genreRef = useRef();
@@ -13,7 +13,7 @@ function MovieCreate({token}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Clicked');
+        // console.log('Clicked');
 
         const title = titleRef.current.value;
         const genre = genreRef.current.value;
@@ -28,7 +28,7 @@ function MovieCreate({token}) {
             length,
             releaseYear,
         }
-        console.log(bodyObj);
+        // console.log(bodyObj);
 
         const url = `${baseURL}/movies/`;
 
@@ -51,9 +51,10 @@ function MovieCreate({token}) {
         try {
             const response = await fetch(url, requestOptions);
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if (data.message === "success") {
-                console.log("Movie Added");
+                // console.log("Movie Added");
+                fetchMovies();
             }
         }
 

@@ -3,12 +3,14 @@ import Auth from './components/auth/Auth';
 import { useState, useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
 import MovieIndex from './components/movies/MovieIndex';
+import MovieEdit from './components/movies/MovieEdit';
+import Logout from './components/auth/logout/Logout';
 
 function App() {
 
-  const [sessionToken, setSessionToken] = useState('Simple Token');
+  const [sessionToken, setSessionToken] = useState('');
 
-  console.log('App: ', sessionToken);
+  // console.log('App: ', sessionToken);
 
   const updateToken = newToken => {
     localStorage.setItem("token", newToken);
@@ -40,16 +42,21 @@ function App() {
     */
 
   useEffect(() => {
+    // console.log("localStorage Token",localStorage.getItem('token'));
     if (localStorage.getItem('token')){
       setSessionToken(localStorage.getItem('token'));
     }
   }, []);
 
+
+
   return (
     <div className="App">
+      {sessionToken !== '' ? <Logout updateToken={updateToken} /> : null}
       <Routes>
         <Route path='/' element={<Auth updateToken={updateToken} />} />
-        <Route path='/movie' element={<MovieIndex token={sessionToken} />} />
+        <Route path='/movie' element={<MovieIndex token={sessionToken} />}/>
+        <Route path='/movie/update/:id' element={<MovieEdit token={sessionToken} />}/>
       </Routes>
     </div>
   );

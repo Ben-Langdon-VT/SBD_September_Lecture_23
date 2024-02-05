@@ -35,7 +35,7 @@ router.post('/', validateSession, async (req, res) => {
         //4. response to client
 
         res.status(200).json({
-            message: `${newMovie.title} added to collection`,
+            message: `success`,
             newMovie
         })
 
@@ -79,7 +79,7 @@ router.get('/', validateSession, async (req, res) => {
 });
 
 //TODO GET One
-router.get('/id/:id', validateSession, async (req, res) => {
+router.get('/find-one/:id', validateSession, async (req, res) => {
     try {
         /* 
         !   Challenge
@@ -125,21 +125,11 @@ router.get('/genre/:genre', validateSession, async (req, res) => {
         */
         const { genre } = req.params;
         const user_id = req.user._id;
-        let buildWord = "";
-        if (genre) {
-            for (let i = 0; i < genre.length; i++) {
-                if (i === 0 || genre[i - 1] === '-' || genre[i-1] === '  ') {
-                    buildWord += genre[i].toUpperCase();
-                }
-                else {
-                    buildWord += genre[i].toLowerCase();
-                }
-            }
+        const filters = {owner_id: user_id};
+        if(genre){
+            filters.genre = genre;
         }
-        if (genre === "Cmdy") {
-            buildWord = "Comedy";
-        }
-        const movies = await Movie.find({ genre: buildWord, owner_id: user_id });
+        const movies = await Movie.find(filters);
         // console.log(movies);
         if (movies.length > 0) {
             res.status(200).json({
@@ -156,10 +146,10 @@ router.get('/genre/:genre', validateSession, async (req, res) => {
 
 //TODO PATCH/PUT One
 
-router.patch('/add', validateSession,async (req, res) => {
+router.patch('/edit/:id', validateSession,async (req, res) => {
     try {
         //pull value from parameter
-        const { id } = req.params;
+        const {id} = req.params;
         const user_id = req.user._id;
         //pull data from the body
         const info = req.body; 
@@ -170,6 +160,7 @@ router.patch('/add', validateSession,async (req, res) => {
 
         //respond to client
         res.status(200).json({
+            message: "edited",
             result: updated
         });
     }

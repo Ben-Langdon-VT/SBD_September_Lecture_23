@@ -40,7 +40,7 @@ router.post('/signup', async(req,res) => {
         const newUser = await user.save();
 
 
-        const token = jwt.sign({message: 'hello'}, SECRET, {expiresIn: 60*60*24});
+        const token = jwt.sign({id: newUser._id}, SECRET, {expiresIn: 60*60*24});
         // console.log("test2");
         res.send({
             user: newUser,
@@ -62,14 +62,15 @@ router.post( '/login', async(req,res) => {
 
         // 2 check database to see if email exists
         const user = await User.findOne({email: email});
-
+        console.log("Login")
+        console.log(email, password);
         // 3 if email exists, consider if the password matches
-        console.log(user);
+        // console.log(user);
         if(!user) throw new Error("Email or Password does not match");
 
         const passwordMatch = await bcrypt.compare(password, user.password);
 
-        console.log(passwordMatch);
+        // console.log(passwordMatch);
 
         if(!passwordMatch) throw new Error("Email or Password does not match");
 
@@ -87,7 +88,7 @@ router.post( '/login', async(req,res) => {
     catch(err){
         //errors
         res.status(500).json({
-            ERROR: err.message
+            message: err.message
         });
     }
 })
