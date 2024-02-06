@@ -9,9 +9,7 @@ function MovieIndex({token}) {
     
     const [movies, setMovies] = useState([]);
     // console.log("Movies", movies);
-    useEffect(() => {
-        if (token) fetchMovies();
-    }, [token]);
+    
 
     async function fetchMovies() {
             if (!token) return;
@@ -36,6 +34,11 @@ function MovieIndex({token}) {
                 console.error(err.message);
             }
     }
+
+    useEffect(() => {
+        if (token) fetchMovies();
+    }, [token]);
+    
     return (
         <>
             <Container>
